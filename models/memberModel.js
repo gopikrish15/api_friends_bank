@@ -4,25 +4,29 @@ const memberSchema = mongoose.Schema(
     {
         first_name: {
             type: String,
-            required: [true, "Please enter a first name"],
+            required: true,
         },
         last_name: {
             type: String,
             required: true,
-            default: 0,
         },
         email: {
             type: String,
             required: true,
+            
         },
         mobile: {
             type: Number,
+            required: true,
+            
         },
-        date_of_birth: {
-            type: Date
+        address: {
+            type: String,
+            
         },
         plan: {
-            type: Number
+            type: Number,
+            required: true,
         }
     },
     {

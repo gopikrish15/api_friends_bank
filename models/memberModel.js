@@ -2,14 +2,10 @@ const mongoose = require('mongoose');
 
 const memberSchema = mongoose.Schema(
     {
-        first_name: {
-            type: String,
-            required: true,
-        },
-        last_name: {
-            type: String,
-            required: true,
-        },
+       member_name: {
+        type: String,
+        required: true
+       },
         email: {
             type: String,
             required: true,

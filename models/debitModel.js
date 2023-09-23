@@ -23,10 +23,6 @@ const debitSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        payment_type: {
-            type: String,
-            required: true,
-        }
     },
     {
         timestamps: true,

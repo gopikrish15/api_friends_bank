@@ -12,8 +12,9 @@ exports.getAllDebits = async (req, res) => {
     try {
         let data = {}
         const debits = await Debit.find().skip(req.query.offset).limit(req.query.limit);
+        const debit = await Debit.find()
         const totalCount = await Debit.countDocuments();
-        const totalAmount = debits.reduce((total, debit) => total + debit.amount, 0);
+        const totalAmount = debit.reduce((total, debit) => total + debit.amount, 0);
         data.debits = debits
         data.totalCount = totalCount
         data.totalAmount = totalAmount;

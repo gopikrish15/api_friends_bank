@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const transactionSchema = mongoose.Schema(
+const debitSchema = mongoose.Schema(
     {
         memberName: {
             type: String,
@@ -33,6 +33,6 @@ const transactionSchema = mongoose.Schema(
     }
 )
 
-const Transaction = mongoose.model('Transaction', transactionSchema);
+const Debit = mongoose.model('Debit', debitSchema);
 
-module.exports = Transaction;
+module.exports = Debit;

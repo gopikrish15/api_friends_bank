@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const transactionController = require('../controllers/transactionController');
+const debitController = require('../controllers/debitController')
 
 function initRouters(app) {
     //post Members
@@ -31,6 +32,19 @@ function initRouters(app) {
  
      //delete Transaction
      router.delete('/transactions/:id', transactionController.deleteTransactionsWithID);
+
+     //post Transaction
+     router.post('/debits', debitController.postDebits);
+
+     //get Transaction
+     router.get("/debits", debitController.getAllDebits);
+     router.get('/debits/:id', debitController.getDebitsWithID);
+     
+     //put Transaction
+     router.put('/debits/:id', debitController.updateDebitsWithID);
+ 
+     //delete Transaction
+     router.delete('/debits/:id', debitController.deleteDebitsWithID);
 
     
 

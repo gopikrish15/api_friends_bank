@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended: false}))
 app.use("/api", require("./routes/routes")(app));
 
 
-mongoose.connect('mongodb+srv://gopikrish:123456admin@cluster0.0e5nk7n.mongodb.net/').then(() => {
+mongoose.connect('mongodb://localhost:27017').then(() => {
     
     console.log("connected to mongoDB")
     app.listen(3000, () => {

@@ -13,8 +13,10 @@ exports.getAllTransactions = async (req, res) => {
         let data = {}
         const transactions = await Transaction.find().skip(req.query.offset).limit(req.query.limit);
         const totalCount = await Transaction.countDocuments();
+        const totalAmount = transactions.reduce((total, transaction) => total + transaction.amount, 0);
         data.transactions = transactions
         data.totalCount = totalCount
+        data.totalAmount = totalAmount;
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ message: error.message })

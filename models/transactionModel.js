@@ -26,6 +26,9 @@ const transactionSchema = mongoose.Schema(
         payment_type: {
             type: String,
             required: true,
+        },
+        penalty: {
+            type: Number,
         }
     },
     {

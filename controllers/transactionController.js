@@ -12,6 +12,20 @@ exports.getAllTransactions = async (req, res) => {
     try {
         let data = {}
         const transactions = await Transaction.find().skip(req.query.offset).limit(req.query.limit);
+        for (const transaction of transactions) {
+            if (transaction.payment_status === 'Pending') {
+              const createdDateTime = transaction.createdAt;
+              const delay = 120000;
+              
+              setTimeout(() => {
+                const updatedTransaction = { ...transaction };
+                updatedTransaction.penalty += 100;
+              }, Math.max(createdDateTime.getTime() + delay - Date.now(), 0));
+            } else {
+              transaction.penalty = 0;
+            }
+            data.transactions = transaction;
+        }
         const transaction = await Transaction.find()
         const totalCount = await Transaction.countDocuments();
         const totalAmount = transaction.reduce((total, transaction) => total + transaction.amount, 0);
@@ -28,6 +42,7 @@ exports.getTransactionsWithID = async (req, res) => {
     try {
         const { id } = req.params
         const transaction = await Transaction.findById(id)
+       
         res.status(200).json(transaction);
 
     } catch (error) {
@@ -64,6 +79,7 @@ exports.deleteTransactionsWithID = async (req, res) => {
 exports.postTransactions = async (req, res) => {
     try {
         const transaction = await Transaction.create(req.body)
+       
         res.status(200).json(transaction);
 
     } catch (error) {
